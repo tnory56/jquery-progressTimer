@@ -1,0 +1,14 @@
+body{
+    margin:0 auto;
+    padding:0;
+}
+.loading-progress{
+    width:100%;
+}
+
+.container {
+    border: 6px solid black;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+}
