@@ -12,12 +12,13 @@ module.exports = function (grunt) {
     };
     // If you want to add the grunt css/js to another view change it here
     var distDir = 'dist/',
+        demoDir = 'demo/',
         srcDir = 'src/',
         bowerDir = 'bower_components/',
-        staticJsFile = distDir + 'js/static.js',
-        staticMinJsFile = distDir + 'js/static.min.js',
-        staticCssFile = distDir + 'css/static.css',
-        staticMinCssFile = distDir + 'css/static.min.css';
+        staticJsFile = demoDir + 'js/static.js',
+        staticMinJsFile = demoDir + 'js/static.min.js',
+        staticCssFile = demoDir + 'css/static.css',
+        staticMinCssFile = demoDir + 'css/static.min.css';
     // 1. All configuration goes here
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -96,21 +97,21 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         src: [ bowerDir + 'bootstrap/dist/fonts/*'],
-                        dest: distDir + 'fonts/',
+                        dest: demoDir + 'fonts/',
                         filter: 'isFile',
                         flatten: true
                     },
                     {
                         expand: true,
                         src: [ srcDir + 'img/*'],
-                        dest: distDir + 'img/',
+                        dest: demoDir + 'img/',
                         filter: 'isFile',
                         flatten: true
                     },
                     {
                         expand: true,
                         src: bowerDir + 'respond/dest/respond.min.js',
-                        dest: distDir + 'js/',
+                        dest: demoDir + 'js/',
                         filter: 'isFile',
                         flatten: true
                     }
@@ -135,7 +136,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        clean: [distDir + '*'],
+        clean: [distDir + '*', demoDir + '/css/*', demoDir + '/js/*', demoDir + '/fonts/*'],
         jshint: {
             // You get to make the name
             // The paths tell JSHint which files to validate
@@ -149,7 +150,7 @@ module.exports = function (grunt) {
                 files: ["dist/*", "src/*", "demo/*", "package.json", "bower.json", "GruntFile.js"],
                 updateConfigs: ["pkg"],
                 commitFiles: ["-a"],
-                push: true,
+                push: false,
                 pushTo: '<%= pkg.respository.url =>'
             }
         }/* Need to install grunt-sed but current version does support exclude,

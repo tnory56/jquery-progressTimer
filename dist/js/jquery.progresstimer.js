@@ -1,5 +1,5 @@
 /**!
- * jQuery Progress Timer - v0.0.1 - 7/18/2014
+ * jQuery Progress Timer - v0.0.3 - 7/18/2014
  * http://www.thomasnorberg.com
  * Copyright (c) 2014 Thomas Norberg;
  * Licensed MIT
@@ -7,13 +7,17 @@
 
 /*
  <div class="progress">
-    <div class="progress-bar progress-bar-success progress-bar-striped"
-        role="progressbar" aria-valuenow="40" aria-valuemin="0"
-        aria-valuemax="100" style="width: 40%">
-        <span class="sr-only">40% Complete (success)</span>
-    </div>
+ <div class="progress-bar progress-bar-success progress-bar-striped"
+ role="progressbar" aria-valuenow="40" aria-valuemin="0"
+ aria-valuemax="100" style="width: 40%">
+ <span class="sr-only">40% Complete (success)</span>
+ </div>
  </div>
  */
+if (typeof jQuery === 'undefined') {
+    throw new Error('jQuery progress timer requires jQuery');
+}
+
 (function ($) {
     $.fn.progressTimer = function (options) {
         var settings = $.extend({}, $.fn.progressTimer.defaults, options),
@@ -36,7 +40,7 @@
                         .removeClass(settings.warningStyle)
                         .addClass(settings.completeStyle);
                     bar.width("100%");
-                    span.html("100%");
+                    $('span', bar).html("100%");
                     bar.attr("aria-valuenow", 100);
                     setTimeout(function () {
                         settings.onFinish.call(bar);
@@ -54,7 +58,7 @@
                     .attr("aria-valuemin", "0")
                     .attr("aria-valuemax", settings.timeLimit);
                 span.appendTo(bar);
-                if(!showPercentage){
+                if (!showPercentage) {
                     span.addClass("sr-only");
                 }
                 span.html("0%");
@@ -65,14 +69,14 @@
             function run() {
                 var elapsed = new Date() - start,
                     width = showComplete ? 100 : ((elapsed / limit) * 100);
-                    bar.attr("aria-valuenow", width);
-                    bar.width(width + "%");
+                bar.attr("aria-valuenow", width);
+                bar.width(width + "%");
 
-                    var percentage = width.toFixed(2);
-                    if (percentage >= 100) {
-                        percentage = 100;
-                    }
-                    span.html(percentage + "%");
+                var percentage = width.toFixed(2);
+                if (percentage >= 100) {
+                    percentage = 100;
+                }
+                span.html(percentage + "%");
 
                 if (limit - elapsed <= 5000) {
                     bar.removeClass(settings.baseStyle)
