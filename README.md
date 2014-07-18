@@ -1,5 +1,7 @@
 jQuery Progress timer is a jquery extension that extends the functionality of the Bootstrap progress [bar component](http://getbootstrap.com/components/#progress)
 
+ - REQUIRES Bootstrap 3.2.0 or greater.
+
 ## Table of contents
 
  - [Quick start](#quick-start)

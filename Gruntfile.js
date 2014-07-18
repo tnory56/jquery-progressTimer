@@ -150,7 +150,7 @@ module.exports = function (grunt) {
                 files: ["dist/*", "src/*", "demo/*", "package.json", "bower.json", "GruntFile.js"],
                 updateConfigs: ["pkg"],
                 commitFiles: ["-a"],
-                push: false,
+                push: true,
                 pushTo: '<%= pkg.respository.url =>'
             }
         }/* Need to install grunt-sed but current version does support exclude,
