@@ -16,7 +16,6 @@
     ],
     "license": "MIT",
     "homepage": "http://thomasnorberg.com",
-    "private": true,
     "ignore": [
         "**/.*",
         "node_modules",
