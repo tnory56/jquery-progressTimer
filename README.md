@@ -1,17 +1,10 @@
-# [Bootstrap](http://getbootstrap.com)
-[![Bower version](https://badge.fury.io/bo/bootstrap.svg)](http://badge.fury.io/bo/bootstrap)
-[![NPM version](https://badge.fury.io/js/bootstrap.svg)](http://badge.fury.io/js/bootstrap)
-[![Build Status](https://secure.travis-ci.org/twbs/bootstrap.svg?branch=master)](http://travis-ci.org/twbs/bootstrap)
-[![devDependency Status](https://david-dm.org/twbs/bootstrap/dev-status.svg)](https://david-dm.org/twbs/bootstrap#info=devDependencies)
-[![Selenium Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
-
-Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created by [Mark Otto](http://twitter.com/mdo) and [Jacob Thornton](http://twitter.com/fat), and maintained by the [core team](https://github.com/twbs?tab=members) with the massive support and involvement of the community.
-
-To get started, check out <http://getbootstrap.com>!
+jQuery Progress timer is a jquery extension that extends the functionality of the Bootstrap progress [bar component](http://getbootstrap.com/components/#progress)
 
 ## Table of contents
 
  - [Quick start](#quick-start)
+
+<!---
  - [Bugs and feature requests](#bugs-and-feature-requests)
  - [Documentation](#documentation)
  - [Contributing](#contributing)
@@ -19,23 +12,22 @@ To get started, check out <http://getbootstrap.com>!
  - [Versioning](#versioning)
  - [Creators](#creators)
  - [Copyright and license](#copyright-and-license)
-
+-->
 ## Quick start
 
 Three quick start options are available:
 
-- [Download the latest release](https://github.com/tnory56/jquery-progresstimer/archive/v0.0.1.zip).
-- Clone the repo: `git clone https://github.com/twbs/bootstrap.git`.
-- Install with [Bower](http://bower.io): `bower install bootstrap`.
+- Clone the repo: `git clone https://github.com/tnory56/jquery-progressTimer.git`.
+- Install with [Bower](http://bower.io): `bower install jquery-progresstimer`.
+- See the demo page [Demo](https://github.com/tnory56/jquery-progressTimer/blob/master/demo/index.html) for usage and possibilities
 
-Read the [Getting started page](http://getbootstrap.com/getting-started/) for information on the framework contents, templates and examples, and more.
-
+<!---
 ### What's included
 
 Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
 
 ```
-bootstrap/
+jquery-progressTimer/
 ├── css/
 │   ├── bootstrap.css
 │   ├── bootstrap.min.css
@@ -125,3 +117,4 @@ For transparency into our release cycle and in striving to maintain backward com
 ## Copyright and license
 
 Code and documentation copyright 2011-2014 Twitter, Inc. Code released under [the MIT license](LICENSE). Docs released under [Creative Commons](docs/LICENSE).
+-->
