@@ -54,7 +54,6 @@ if (typeof jQuery === 'undefined') {
                 if (!showPercentage) {
                     span.addClass("sr-only");
                 }
-                span.html("0%");
                 bar.appendTo(barContainer);
                 barContainer.appendTo($(this));
             }
