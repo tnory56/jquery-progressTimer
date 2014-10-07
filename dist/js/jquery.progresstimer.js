@@ -1,5 +1,5 @@
 /**!
- * jQuery Progress Timer - v1.0.0 - 10/7/2014
+ * jQuery Progress Timer - v1.0.1 - 10/7/2014
  * http://www.thomasnorberg.com
  * Copyright (c) 2014 Thomas Norberg;
  * Licensed MIT
@@ -136,7 +136,11 @@ if (typeof jQuery === 'undefined') {
 
     Plugin.prototype.complete = function () {
         var t = this,
-            bar = t.removeInterval.call(t);
+            bar = t.removeInterval.call(t),
+            args = arguments;
+        if(args.length !== 0 && typeof args[0] === 'object'){
+            t.options = $.extend({}, t.options, args[0]);
+        }
         bar.removeClass(t.options.baseStyle)
             .removeClass(t.options.warningStyle)
             .addClass(t.options.completeStyle);
