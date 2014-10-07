@@ -5,16 +5,9 @@ jQuery Progress timer is a jquery extension that extends the functionality of th
 ## Table of contents
 
  - [Quick start](#quick-start)
-
-<!---
- - [Bugs and feature requests](#bugs-and-feature-requests)
- - [Documentation](#documentation)
- - [Contributing](#contributing)
- - [Community](#community)
- - [Versioning](#versioning)
- - [Creators](#creators)
- - [Copyright and license](#copyright-and-license)
--->
+ - [What's Included](#whats-included)
+ - [Simple Example](#simple-example)
+ 
 ## Quick start
 
 Three quick start options are available:
@@ -23,100 +16,69 @@ Three quick start options are available:
 - Install with [Bower](http://bower.io): `bower install jquery-progresstimer`.
 - See the demo page [Demo](https://github.com/tnory56/jquery-progressTimer/blob/master/demo/index.html) for usage and possibilities
 
-<!---
-### What's included
+
+## What's included
 
 Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
 
 ```
-jquery-progressTimer/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap-theme.css
-│   └── bootstrap-theme.min.css
-├── js/
-│   ├── bootstrap.js
-│   └── bootstrap.min.js
-└── fonts/
-    ├── glyphicons-halflings-regular.eot
-    ├── glyphicons-halflings-regular.svg
-    ├── glyphicons-halflings-regular.ttf
-    └── glyphicons-halflings-regular.woff
+jquery-progresstimer/
+├── demo/
+│	├── css/
+│	│	├── static.css
+│	│	└── static.min.css
+│	├── fonts/
+│	│	├── glyphicons-halflings-regular.eot
+│	│	├── glyphicons-halflings-regular.svg
+│	│	├── glyphicons-halflings-regular.ttf
+│	│	└── glyphicons-halflings-regular.woff
+│	├── js/
+│	│	├── static.js
+│	│	└── static.min.js
+│	├── demo.css
+│	└── index.html
+├── dist/
+│	├── css/
+│	│	└── jquery.progresstimer.css
+│	└── js/
+│		├── jquery.progresstimer.js
+│		└── jquery.progresstimer.min.js
+├── src/
+│	├── css/
+│	└── js/
+├── bower.json
+├── Gruntfile.js
+├── LICENSE
+├── package.json
+└── README.md
 ```
 
-We provide compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (`bootstrap.min.*`). Fonts from Glyphicons are included, as is the optional Bootstrap theme.
+## Simple Example
 
-
-
-## Bugs and feature requests
-
-Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/twbs/bootstrap/issues/new).
-
-
-## Documentation
-
-Bootstrap's documentation, included in this repo in the root directory, is built with [Jekyll](http://jekyllrb.com) and publicly hosted on GitHub Pages at <http://getbootstrap.com>. The docs may also be run locally.
-
-### Running documentation locally
-
-1. If necessary, [install Jekyll](http://jekyllrb.com/docs/installation) (requires v2.0.x).
-  - **Windows users:** Read [this unofficial guide](https://github.com/juthilo/run-jekyll-on-windows/) to get Jekyll up and running without problems. We use Pygments for syntax highlighting, so make sure to read the sections on installing Python and Pygments.
-2. From the root `/bootstrap` directory, run `jekyll serve` in the command line.
-3. Open <http://localhost:9001> in your browser, and voilà.
-
-Learn more about using Jekyll by reading its [documentation](http://jekyllrb.com/docs/home/).
-
-### Documentation for previous releases
-
-Documentation for v2.3.2 has been made available for the time being at <http://getbootstrap.com/2.3.2/> while folks transition to Bootstrap 3.
-
-[Previous releases](https://github.com/twbs/bootstrap/releases) and their documentation are also available for download.
-
-
-
-## Contributing
-
-Please read through our [contributing guidelines](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
-
-Moreover, if your pull request contains JavaScript patches or features, you must include relevant unit tests. All HTML and CSS should conform to the [Code Guide](http://github.com/mdo/code-guide), maintained by [Mark Otto](http://github.com/mdo).
-
-Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
-
-
-
-## Community
-
-Keep track of development and community news.
-
-- Follow [@twbootstrap on Twitter](http://twitter.com/twbootstrap).
-- Read and subscribe to [The Official Bootstrap Blog](http://blog.getbootstrap.com).
-- Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##twitter-bootstrap` channel.
-- Implementation help may be found at Stack Overflow (tagged [`twitter-bootstrap-3`](http://stackoverflow.com/questions/tagged/twitter-bootstrap-3)).
-
-
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, Bootstrap is maintained under [the Semantic Versioning guidelines](http://semver.org/). Sometimes we screw up, but we'll adhere to those rules whenever possible.
-
-
-
-## Creators
-
-**Mark Otto**
-
-- <http://twitter.com/mdo>
-- <http://github.com/mdo>
-
-**Jacob Thornton**
-
-- <http://twitter.com/fat>
-- <http://github.com/fat>
-
-
-
-## Copyright and license
-
-Code and documentation copyright 2011-2014 Twitter, Inc. Code released under [the MIT license](LICENSE). Docs released under [Creative Commons](docs/LICENSE).
--->
+```html
+<div class="container">
+    <div class="loading-progress"></div>
+</div>
+<script src="js/static.min.js"></script>
+<script src="../dist/js/jquery.progresstimer.js"></script>
+<script>
+    var progress = $(".loading-progress").progressTimer({
+        timeLimit: 10,
+        onFinish: function () {
+            alert('completed!');
+        }
+    });
+    $.ajax({
+       url:"http://localhost/"
+    }).error(function(){
+        progress.progressTimer('error', {
+            errorText:'ERROR!',
+            onFinish:function(){
+                alert('There was an error processing your information!');
+            }
+        });
+    }).done(function(){
+        progress.progressTimer('complete');
+    });
+</script>
+```

@@ -10,96 +10,188 @@
 if (typeof jQuery === 'undefined') {
     throw new Error('jQuery progress timer requires jQuery');
 }
+/*!
+ * jQuery lightweight plugin boilerplate
+ * Original author: @ajpiano
+ * Further changes, comments: @addyosmani
+ * Licensed under the MIT license
+ */
 
-(function ($) {
-    $.fn.progressTimer = function (options) {
-        var settings = $.extend({}, $.fn.progressTimer.defaults, options),
-            interval,
-            span = $("<span/>");
-        this.each(function () {
-            var showComplete = settings.showComplete === true,
-                showPercentage = settings.showPercentage === true,
-                start = new Date(),
-                limit = settings.timeLimit * 1000,
-                bar,
-                t = this,
-                onComplete = function () {
-                    bar = $('.progress-bar', $(this));
-                    if (typeof bar.data('interval') !== "undefined") {
-                        var interval = bar.data('interval');
-                        window.clearInterval(interval);
-                    }
-                    bar.removeClass(settings.baseStyle)
-                        .removeClass(settings.warningStyle)
-                        .addClass(settings.completeStyle);
-                    bar.width("100%");
-                    $('span', bar).html("100%");
-                    bar.attr("aria-valuenow", 100);
-                    setTimeout(function () {
-                        settings.onFinish.call(bar);
-                    }, 500);
-                };
-            if (showComplete) {
-                onComplete.call(this);
-                return this;
+(function ($, window, document, undefined) {
+    "use strict";
+    // undefined is used here as the undefined global
+    // variable in ECMAScript 3 and is mutable (i.e. it can
+    // be changed by someone else). undefined isn't really
+    // being passed in so we can ensure that its value is
+    // truly undefined. In ES5, undefined can no longer be
+    // modified.
+
+    // window and document are passed through as local
+    // variables rather than as globals, because this (slightly)
+    // quickens the resolution process and can be more
+    // efficiently minified (especially when both are
+    // regularly referenced in your plugin).
+
+    // Create the defaults once
+    var pluginName = 'progressTimer',
+        defaults = {
+            //total number of seconds
+            timeLimit: 60,
+            //seconds remaining triggering switch to warning color
+            warningThreshold: 5,
+            //invoked once the timer expires
+            onFinish: function () {
+            },
+            //bootstrap progress bar style at the beginning of the timer
+            baseStyle: '',
+            //bootstrap progress bar style in the warning phase
+            warningStyle: 'progress-bar-danger',
+            //bootstrap progress bar style at completion of timer
+            completeStyle: 'progress-bar-success',
+            //show percentage in html div area
+            showPercentage: true,
+            errorText: 'ERROR!'
+        };
+
+    // The actual plugin constructor
+    var Plugin = function (element, options) {
+        this.element = element;
+        this.$elem = $(element);
+        this.options = $.extend({}, defaults, options);
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.metadata = this.$elem.data('plugin-options');
+        this.init();
+    };
+
+    Plugin.prototype.constructor = Plugin;
+
+    Plugin.prototype.init = function () {
+        var t = this;
+        $(t.element).empty();
+        t.span = $("<span/>");
+        t.barContainer = $("<div>").addClass("progress");
+        t.bar = $("<div>").addClass("progress-bar active progress-bar-striped").addClass(t.options.baseStyle)
+            .attr("role", "progressbar")
+            .attr("aria-valuenow", "0")
+            .attr("aria-valuemin", "0")
+            .attr("aria-valuemax", t.options.timeLimit);
+        t.span.appendTo(t.bar);
+        if (!t.options.showPercentage) {
+            t.span.addClass("sr-only");
+        }
+        t.bar.appendTo(t.barContainer);
+        t.barContainer.appendTo(t.element);
+        t.start = new Date();
+        t.limit = t.options.timeLimit * 1000;
+        t.interval = window.setInterval(function () {
+            t._run.call(t);
+        }, 250);
+        t.bar.data('progress-interval', t.interval);
+        return true;
+    };
+
+    Plugin.prototype.destroy = function(){
+        this.$elem.removeData();
+    };
+
+    Plugin.prototype._run = function () {
+        var t = this;
+        var elapsed = new Date() - t.start,
+            width = ((elapsed / t.limit) * 100);
+        t.bar.attr("aria-valuenow", width);
+        t.bar.width(width + "%");
+        var percentage = width.toFixed(2);
+        if (percentage >= 100) {
+            percentage = 100;
+        }
+        t.span.html(percentage + "%");
+        if (t.limit - elapsed <= 5000) {
+            t.bar.removeClass(this.options.baseStyle)
+                .removeClass(this.options.completeStyle)
+                .addClass(this.options.warningStyle);
+        }
+        if (elapsed >= t.limit) {
+            t.complete.call(t);
+        }
+        return true;
+    };
+
+    Plugin.prototype.removeInterval = function () {
+        var t = this,
+            bar = $('.progress-bar', t.element);
+        if (typeof bar.data('progress-interval') !== "undefined") {
+            var interval = bar.data('progress-interval');
+            window.clearInterval(interval);
+        }
+        return bar;
+    };
+
+    Plugin.prototype.complete = function () {
+        var t = this,
+            bar = t.removeInterval.call(t);
+        bar.removeClass(t.options.baseStyle)
+            .removeClass(t.options.warningStyle)
+            .addClass(t.options.completeStyle);
+        bar.width("100%");
+        $("span", bar).html("100%");
+        bar.attr("aria-valuenow", 100);
+        setTimeout(function () {
+            t.options.onFinish.call(bar);
+        }, 500);
+        t.destroy.call(t);
+    };
+
+    Plugin.prototype.error = function () {
+        var t = this,
+            bar = t.removeInterval.call(t),
+            args = arguments;
+        if(args.length !== 0 && typeof args[0] === 'object'){
+            t.options = $.extend({}, t.options, args[0]);
+        }
+        bar.removeClass(t.options.baseStyle)
+            .addClass(t.options.warningStyle);
+        bar.width("100%");
+        $("span", bar).html(t.options.errorText);
+        bar.attr("aria-valuenow", 100);
+        setTimeout(function () {
+            t.options.onFinish.call(bar);
+        }, 500);
+        t.destroy.call(t);
+    };
+
+    // A really lightweight plugin wrapper around the constructor,
+    // preventing against multiple instantiations
+    $.fn[pluginName] = function (options) {
+        var args = arguments;
+        if (options === undefined || typeof options === 'object') {
+            // Creates a new plugin instance
+            return this.each(function () {
+                if (!$.data(this, 'plugin_' + pluginName)) {
+                    $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+                }
+            });
+        } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
+            // Call a public plugin method (not starting with an underscore) and different
+            // from the 'init' one
+            if (Array.prototype.slice.call(args, 1).length === 0 && $.inArray(options, $.fn[pluginName].getters) != -1) {
+                // If the user does not pass any arguments and the method allows to
+                // work as a getter then break the chainability so we can return a value
+                // instead the element reference.
+                var instance = $.data(this[0], 'plugin_' + pluginName);
+                return instance[options].apply(instance, Array.prototype.slice.call(args, 1));
             } else {
-                $(this).empty();
-                var barContainer = $("<div>").addClass("progress");
-                bar = $("<div>").addClass("progress-bar active progress-bar-striped").addClass(settings.baseStyle)
-                    .attr("role", "progressbar")
-                    .attr("aria-valuenow", "0")
-                    .attr("aria-valuemin", "0")
-                    .attr("aria-valuemax", settings.timeLimit);
-                span.appendTo(bar);
-                if (!showPercentage) {
-                    span.addClass("sr-only");
-                }
-                bar.appendTo(barContainer);
-                barContainer.appendTo($(this));
+                // Invoke the specified method on each selected element
+                return this.each(function() {
+                    var instance = $.data(this, 'plugin_' + pluginName);
+                    if (instance instanceof Plugin && typeof instance[options] === 'function') {
+                        instance[options].apply(instance, Array.prototype.slice.call(args, 1));
+                    }
+                });
             }
-
-            function run() {
-                var elapsed = new Date() - start,
-                    width = showComplete ? 100 : ((elapsed / limit) * 100);
-                bar.attr("aria-valuenow", width);
-                bar.width(width + "%");
-
-                var percentage = width.toFixed(2);
-                if (percentage >= 100) {
-                    percentage = 100;
-                }
-                span.html(percentage + "%");
-
-                if (limit - elapsed <= 5000) {
-                    bar.removeClass(settings.baseStyle)
-                        .removeClass(settings.completeStyle)
-                        .addClass(settings.warningStyle);
-                }
-
-                if (elapsed >= limit || showComplete) {
-                    onComplete.call(t);
-                }
-            }
-
-            // to prevent the interval to be defined many times
-            if (typeof bar.data('interval') === "undefined") {
-                interval = window.setInterval(run, 250);
-                bar.data('interval', interval);
-            }
-            return this;
-        });
-        return this;
+        }
     };
 
-    $.fn.progressTimer.defaults = {
-        timeLimit: 60,  //total number of seconds
-        warningThreshold: 5,  //seconds remaining triggering switch to warning color
-        onFinish: function () {
-        },  //invoked once the timer expires
-        baseStyle: '',  //bootstrap progress bar style at the beginning of the timer
-        warningStyle: 'progress-bar-danger',  //bootstrap progress bar style in the warning phase
-        completeStyle: 'progress-bar-success',  //bootstrap progress bar style at completion of timer
-        showPercentage: true, //show percentage in html div area
-        showComplete: false //show complete progress bar,
-    };
-})(jQuery);
+    $.fn[pluginName].getters = ['complete', 'error'];
+
+})(jQuery, window, document, undefined);

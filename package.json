@@ -1,7 +1,7 @@
 {
   "name": "jquery-progresstimer",
   "title": "jQuery Progress Timer",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "author": {
     "name": "Thomas Norberg",
     "email": "tnorberg@thomasnorberg.com",
@@ -26,7 +26,8 @@
     "time-grunt": "^0.3.1",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-bump": "0.0.14"
+    "grunt-bump": "0.0.14",
+    "grunt-jsdox": "^0.1.5"
   },
   "licenses": [
     {

@@ -10,20 +10,26 @@
     <div class="loading-progress"></div>
 </div>
 <script src="js/static.min.js"></script>
-<script src="../dist/js/jquery.progresstimer.min.js"></script>
+<script src="../dist/js/jquery.progresstimer.js"></script>
 <script>
     var progress = $(".loading-progress").progressTimer({
-        timeLimit: 30
+        timeLimit: 10,
+        onFinish: function () {
+            alert('completed!');
+        }
     });
-    //Possibly after an ajax request
-    setTimeout(function () {
-        progress.progressTimer({
-            showComplete: true,
-            onFinish: function () {
-                alert('completed!');
+    $.ajax({
+       url:"http://localhost/"
+    }).error(function(){
+        progress.progressTimer('error', {
+            errorText:'ERROR!',
+            onFinish:function(){
+                alert('There was an error processing your information!');
             }
         });
-    }, 10000);
+    }).done(function(){
+        progress.progressTimer('complete');
+    });
 </script>
 </body>
 </html>

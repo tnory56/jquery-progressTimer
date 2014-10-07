@@ -153,18 +153,38 @@ module.exports = function (grunt) {
                 push: true,
                 pushTo: '<%= pkg.respository.url =>'
             }
-        }/* Need to install grunt-sed but current version does support exclude,
-        sed: {
-            versionNumber: {
-                pattern: (function () {
-                    var old = grunt.option('oldver');
-                    return old ? RegExp.quote(old) : old;
-                })(),
-                replacement: grunt.option('newver'),
-                recursive: true,
-                exclude:['node_modules','bower_components']
-            }
-        }*/
+        },
+        jsdox: {
+            generate: {
+                options: {
+                    contentsEnabled: true,
+                    contentsTitle: 'Example Documentation',
+                    contentsFile: 'readme.md'//,
+                    ///pathFilter: /^example/
+                },
+                src: ['src/js/*'],
+                dest: 'md'
+            }//,
+            // [optional additional "generation" task like generate above, can be targed with jsdox:generate-other-docs],
+            /*publish: {
+                enabled: true,
+                path: '<%= jsdox.generate.dest %>',
+                message: 'Markdown Auto-Generated for version <%= pkg.version %>',
+                remoteName: 'upstream',
+                remoteBranch: 'master'
+            }*/
+        }/* Need to install grunt-sed but current version does not support exclude,
+         sed: {
+         versionNumber: {
+         pattern: (function () {
+         var old = grunt.option('oldver');
+         return old ? RegExp.quote(old) : old;
+         })(),
+         replacement: grunt.option('newver'),
+         recursive: true,
+         exclude:['node_modules','bower_components']
+         }
+         }*/
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
