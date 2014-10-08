@@ -2,4 +2,5 @@ branches:
   only:
     - gh-pages
 language: ruby
-script: "bundle exec jekyll build"
+script:
+  - "bundle exec jekyll build"
