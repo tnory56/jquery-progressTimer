@@ -5,4 +5,5 @@ node_js:
   - "0.8"
   - "0.6"
 before_install: npm install -g grunt-cli
-install: grunt dist
+install: npm install
+before_script: grunt dist
