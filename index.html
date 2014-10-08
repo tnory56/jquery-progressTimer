@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery-progresstimer by tnory56</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jquery-progresstimer</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/tnory56/jquery-progressTimer">View the Project on GitHub <small>tnory56/jquery-progressTimer</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/tnory56/jquery-progressTimer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tnory56/jquery-progressTimer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tnory56/jquery-progressTimer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>jQuery Progress timer is a jquery extension that extends the functionality of the Bootstrap progress <a href="http://getbootstrap.com/components/#progress">bar component</a></p>
+
+<ul>
+<li>REQUIRES Bootstrap 3.2.0 or greater.</li>
+</ul><h2>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of contents</h2>
+
+<ul>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#whats-included">What's Included</a></li>
+<li><a href="#simple-example">Simple Example</a></li>
+</ul><h2>
+<a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick start</h2>
+
+<p>Three quick start options are available:</p>
+
+<ul>
+<li>Clone the repo: <code>git clone https://github.com/tnory56/jquery-progressTimer.git</code>.</li>
+<li>Install with <a href="http://bower.io">Bower</a>: <code>bower install jquery-progresstimer</code>.</li>
+<li>See the demo page <a href="https://github.com/tnory56/jquery-progressTimer/blob/master/demo/index.html">Demo</a> for usage and possibilities</li>
+</ul><h2>
+<a name="whats-included" class="anchor" href="#whats-included"><span class="octicon octicon-link"></span></a>What's included</h2>
+
+<p>Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:</p>
+
+<pre><code>jquery-progresstimer/
+├── demo/
+│ ├── css/
+│ │ ├── static.css
+│ │ └── static.min.css
+│ ├── fonts/
+│ │ ├── glyphicons-halflings-regular.eot
+│ │ ├── glyphicons-halflings-regular.svg
+│ │ ├── glyphicons-halflings-regular.ttf
+│ │ └── glyphicons-halflings-regular.woff
+│ ├── js/
+│ │ ├── static.js
+│ │ └── static.min.js
+│ ├── demo.css
+│ └── index.html
+├── dist/
+│ ├── css/
+│ │ └── jquery.progresstimer.css
+│ └── js/
+│     ├── jquery.progresstimer.js
+│     └── jquery.progresstimer.min.js
+├── src/
+│ ├── css/
+│ └── js/
+├── bower.json
+├── Gruntfile.js
+├── LICENSE
+├── package.json
+└── README.md
+</code></pre>
+
+<h2>
+<a name="simple-example" class="anchor" href="#simple-example"><span class="octicon octicon-link"></span></a>Simple Example</h2>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"loading-progress"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/static.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"../dist/js/jquery.progresstimer.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">progress</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">".loading-progress"</span><span class="p">).</span><span class="nx">progressTimer</span><span class="p">({</span>
+        <span class="nx">timeLimit</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="nx">onFinish</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">'completed!'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+       <span class="nx">url</span><span class="o">:</span><span class="s2">"http://localhost/"</span>
+    <span class="p">}).</span><span class="nx">error</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">progress</span><span class="p">.</span><span class="nx">progressTimer</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">errorText</span><span class="o">:</span><span class="s1">'ERROR!'</span><span class="p">,</span>
+            <span class="nx">onFinish</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s1">'There was an error processing your information!'</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">progress</span><span class="p">.</span><span class="nx">progressTimer</span><span class="p">(</span><span class="s1">'complete'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tnory56">tnory56</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
