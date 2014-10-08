@@ -1,3 +1,7 @@
+[![Bower version](https://badge.fury.io/bo/jquery-progresstimer.svg)](https://badge.fury.io/bo/jquery-progresstimer)
+[![devDependency Status](https://david-dm.org/tnory56/jquery-progressTimer/dev-status.svg)](https://david-dm.org/tnory56/jquery-progressTimer/#info=devDependencies)
+[![Dependency Status](https://david-dm.org/tnory56/jquery-progressTimer/status.svg)](https://david-dm.org/tnory56/jquery-progressTimer/)
+
 jQuery Progress timer is a jquery extension that extends the functionality of the Bootstrap progress [bar component](http://getbootstrap.com/components/#progress)
 
  - REQUIRES Bootstrap 3.2.0 or greater.
