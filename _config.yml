@@ -10,4 +10,7 @@ github_username:  tnory56
 
 # Build settings
 markdown: kramdown
-highlighter: rouge
+#highlighter: pygments.rb
+
+#gems:
+ # - rouge
