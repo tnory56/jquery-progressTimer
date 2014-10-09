@@ -57,7 +57,10 @@ if (typeof jQuery === "undefined") {
             completeStyle: "progress-bar-success",
             //show percentage in html div area
             showPercentage: true,
-            errorText: "ERROR!"
+            //set the error text when error occurs
+            errorText: "ERROR!",
+            //set the success text when succes occurs
+            successText: "100%"
         };
 
     // The actual plugin constructor
@@ -145,7 +148,7 @@ if (typeof jQuery === "undefined") {
             .removeClass(t.options.warningStyle)
             .addClass(t.options.completeStyle);
         bar.width("100%");
-        $("span", bar).html("100%");
+        $("span", bar).html(t.options.successText);
         bar.attr("aria-valuenow", 100);
         setTimeout(function () {
             t.options.onFinish.call(bar);
