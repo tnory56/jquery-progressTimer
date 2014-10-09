@@ -1,0 +1,38 @@
+{
+    "name": "jquery-progresstimer",
+    "title": "jQuery Progress Timer SITE",
+    "version": "1.0.0",
+    "author": {
+        "name": "Thomas Norberg",
+        "email": "tnorberg@thomasnorberg.com",
+        "url": "http://www.thomasnorberg.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tnory56/jquery-progressTimer.git"
+    },
+    "description": "The jquery progresstimer is a plugin that extends the ability of the bootstrap progress bar.",
+    "homepage": "http://www.thomasnorberg.com",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-banner": "*",
+        "grunt-bump": "0.0.16",
+        "grunt-contrib-clean": "~0.6.0",
+        "grunt-contrib-concat": "~0.5.0",
+        "grunt-contrib-copy": "~0.6.0",
+        "grunt-contrib-cssmin": "~0.10.0",
+        "grunt-contrib-jshint": "~0.10.0",
+        "grunt-contrib-uglify": "~0.6.0",
+        "grunt-contrib-watch": "~0.6.1",
+        "grunt-jsdox": "~0.1.5",
+        "grunt-newer": "~0.7.0",
+        "load-grunt-tasks": "~0.6.0",
+        "time-grunt": "~1.0.0"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://www.opensource.org/licenses/MIT"
+        }
+    ]
+}

@@ -2,5 +2,17 @@ branches:
   only:
     - gh-pages
 language: ruby
+node_js:
+  - "0.11"
+  - "0.10"
+before_install:
+  - npm install -g grunt-cli
+  - npm install -g bower
+install:
+  - npm install
+before_script:
+  - bower install
+before_script:
+  - grunt dist
 script:
   - "bundle exec jekyll build"

@@ -1,0 +1,85 @@
+---
+layout: post
+title:  "Examples"
+date:   2014-10-08 22:23:05
+categories: jquery bootstrap progress examples
+customjs:
+  - /jquery-progressTimer/dist/js/static.min.js
+  - /jquery-progressTimer/dist/js/jquery.progresstimer.js
+  - /jquery-progressTimer/dist/js/demo.js
+customcss:
+  - /jquery-progressTimer/dist/css/static.min.css
+---
+
+<div class="loading-progress-1"></div>
+
+{% highlight html %}
+<div class="loading-progress-1"></div>
+<script>
+    var progress1 = $(".loading-progress-1").progressTimer({
+        timeLimit: 10,
+        onFinish: function () {
+            alert('completed!');
+        }
+    });
+    $.ajax({
+        url: "http://localhost/"
+    }).error(function () {
+        progress1.progressTimer('error', {
+            errorText: 'ERROR!',
+            onFinish: function () {
+                alert('There was an error processing your information!');
+            }
+        });
+    }).done(function () {
+        progress1.progressTimer('complete');
+    });
+</script>
+{% endhighlight %}
+
+<div class="loading-progress-2"></div>
+{% highlight html %}
+<div class="loading-progress-2"></div>
+<script>
+    var progress2 = $(".loading-progress-2").progressTimer({
+        timeLimit: 30
+    });
+    $.ajax({
+        url: "http://www.github.com/"
+    }).error(function () {
+        progress2.progressTimer('error', {
+            errorText: 'Cannot connect to github',
+            onFinish: function () {
+                alert('Cannot connect to github!');
+            }
+        });
+    }).done(function () {
+        progress2.progressTimer('complete', {
+            onFinish: function () {
+                alert('With new completion!');
+            }
+        });
+    });
+</script>
+{% endhighlight %}
+
+## Default Settings
+{% highlight json %}
+    //total number of seconds
+    timeLimit: 60,
+    //seconds remaining triggering switch to warning color
+    warningThreshold: 5,
+    //invoked once the timer expires
+    onFinish: function () {
+    },
+    //bootstrap progress bar style at the beginning of the timer
+    baseStyle: '',
+    //bootstrap progress bar style in the warning phase
+    warningStyle: 'progress-bar-danger',
+    //bootstrap progress bar style at completion of timer
+    completeStyle: 'progress-bar-success',
+    //show percentage in html div area
+    showPercentage: true,
+    //set the error text when error occurs
+    errorText: 'ERROR!'
+{% endhighlight %}
