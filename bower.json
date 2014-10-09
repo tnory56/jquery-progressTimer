@@ -6,8 +6,8 @@
     ],
     "description": "The jquery progresstimer is a plugin that extends the ability of the bootstrap progress bar.",
     "main": [
-        "/dist/jquery.progressTimer.js",
-        "/dist/jquery.progressTimer.min.js"
+        "/dist/jquery.progresstimer.js",
+        "/dist/jquery.progresstimer.min.js"
     ],
     "keywords": [
         "progress",
