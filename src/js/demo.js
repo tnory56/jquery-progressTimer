@@ -1,7 +1,7 @@
 var progress1 = $(".loading-progress-1").progressTimer({
     timeLimit: 10,
     onFinish: function () {
-        alert('completed!');
+        console.log('completed!');
     }
 });
 $.ajax({
@@ -10,7 +10,7 @@ $.ajax({
     progress1.progressTimer('error', {
         errorText: 'ERROR!',
         onFinish: function () {
-            alert('There was an error processing your information!');
+            console.log('1 - There was an error processing your information!');
         }
     });
 }).done(function () {
@@ -27,13 +27,37 @@ $.ajax({
     progress2.progressTimer('error', {
         errorText: 'Cannot connect to github',
         onFinish: function () {
-            alert('Cannot connect to github!');
+            console.log('2 - Cannot connect to github!');
         }
     });
 }).done(function () {
     progress2.progressTimer('complete', {
         onFinish: function () {
-            alert('With new completion!');
+            console.log('With new completion!');
+        }
+    });
+});
+
+
+var progress3 = $(".loading-progress-3").progressTimer({
+    timeLimit: 30
+});
+$.ajax({
+    url: "https://api.github.com/users/octocat/orgs"
+}).error(function () {
+    progress3.progressTimer('error', {
+        errorText: 'Cannot connect to github api',
+        onFinish: function () {
+            console.log('3 - Cannot connect to github api');
+        }
+    });
+}).done(function () {
+    progress3.progressTimer('complete', {
+        onFinish: function () {
+            var successText = '3 - Connected successfully to github api';
+            console.log(successText);
+            var glyph = $('<span></span>').addClass('glyphicon glyphicon-ok');
+            $(".loading-progress-3").append($('<p></p>').append(glyph).append(' ' + successText));
         }
     });
 });

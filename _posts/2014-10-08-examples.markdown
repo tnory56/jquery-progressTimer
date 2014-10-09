@@ -63,6 +63,36 @@ customcss:
 </script>
 {% endhighlight %}
 
+<div class="loading-progress-3"></div>
+
+{% highlight html %}
+<div class="loading-progress-3"></div>
+<script>
+    var progress3 = $(".loading-progress-3").progressTimer({
+        timeLimit: 30
+    });
+    $.ajax({
+        url: "https://api.github.com/users/octocat/orgs"
+    }).error(function () {
+        progress3.progressTimer('error', {
+            errorText: 'Cannot connect to github api',
+            onFinish: function () {
+                console.log('3 - Cannot connect to github api');
+            }
+        });
+    }).done(function () {
+        progress3.progressTimer('complete', {
+            onFinish: function () {
+                var successText = '3 - Connected successfully to github api';
+                console.log(successText);
+                var glyph = $('<span></span>').addClass('glyphicon glyphicon-ok');
+                $(".loading-progress-3").append($('<p></p>').append(glyph).append(' ' + successText));
+            }
+        });
+    });
+</script>
+{% endhighlight %}
+
 ## Default Settings
 {% highlight html %}
 //total number of seconds
