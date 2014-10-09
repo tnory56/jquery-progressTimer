@@ -14,5 +14,6 @@ before_script:
   - bower install
   - grunt dist
   - gem install jekyll
+  - gem install github-pages
 script:
-  - "bundle exec jekyll build"
+  - bundle exec jekyll build
