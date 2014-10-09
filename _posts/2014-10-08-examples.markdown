@@ -2,7 +2,7 @@
 layout: post
 title:  "Examples"
 date:   2014-10-08 22:23:05
-categories: jquery bootstrap progress examples
+categories: jquery bootstrap progress
 customjs:
   - /jquery-progressTimer/dist/js/static.min.js
   - /jquery-progressTimer/dist/js/jquery.progresstimer.js
