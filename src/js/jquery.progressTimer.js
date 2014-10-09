@@ -178,7 +178,7 @@ if (typeof jQuery === "undefined") {
         } else if (typeof options === "string" && options[0] !== "_" && options !== "init") {
             // Call a public plugin method (not starting with an underscore) and different
             // from the "init" one
-            if (Array.prototype.slice.call(args, 1).length === 0 && $.inArray(options, $.fn[pluginName].getters) != -1) {
+            if (Array.prototype.slice.call(args, 1).length === 0 && $.inArray(options, $.fn[pluginName].getters) !== -1) {
                 // If the user does not pass any arguments and the method allows to
                 // work as a getter then break the chainability so we can return a value
                 // instead the element reference.
