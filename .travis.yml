@@ -13,7 +13,6 @@ install:
 before_script:
   - bower install
   - grunt dist
-  - gem install jekyll
-  - gem install github-pages
+  - bundle install
 script:
   - bundle exec jekyll build
