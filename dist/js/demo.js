@@ -60,6 +60,7 @@ $.ajax({
     });
 }).done(function () {
     progress3.progressTimer('complete', {
+        successText: 'Connected successfully to github api',
         onFinish: function () {
             var successText = '3 - Connected successfully to github api';
             console.log(successText);
