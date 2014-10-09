@@ -19,7 +19,7 @@ Three quick start options are available:
 
 - Clone the repo: `git clone https://github.com/tnory56/jquery-progressTimer.git`.
 - Install with [Bower](http://bower.io): `bower install jquery-progresstimer`.
-- See the demo page [Demo](https://github.com/tnory56/jquery-progressTimer/blob/master/demo/index.html) for usage and possibilities
+- See the demo page [Demo](http://tnory56.github.io/jquery-progressTimer/) for usage and possibilities
 
 
 ## What's included
