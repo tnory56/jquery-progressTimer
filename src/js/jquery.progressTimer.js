@@ -7,8 +7,8 @@
  </div>
  </div>
  */
-if (typeof jQuery === 'undefined') {
-    throw new Error('jQuery progress timer requires jQuery');
+if (typeof jQuery === "undefined") {
+    throw new Error("jQuery progress timer requires jQuery");
 }
 /*!
  * jQuery lightweight plugin boilerplate
@@ -33,7 +33,7 @@ if (typeof jQuery === 'undefined') {
     // regularly referenced in your plugin).
 
     // Create the defaults once
-    var pluginName = 'progressTimer',
+    var pluginName = "progressTimer",
         defaults = {
             //total number of seconds
             timeLimit: 60,
@@ -43,14 +43,14 @@ if (typeof jQuery === 'undefined') {
             onFinish: function () {
             },
             //bootstrap progress bar style at the beginning of the timer
-            baseStyle: '',
+            baseStyle: "",
             //bootstrap progress bar style in the warning phase
-            warningStyle: 'progress-bar-danger',
+            warningStyle: "progress-bar-danger",
             //bootstrap progress bar style at completion of timer
-            completeStyle: 'progress-bar-success',
+            completeStyle: "progress-bar-success",
             //show percentage in html div area
             showPercentage: true,
-            errorText: 'ERROR!'
+            errorText: "ERROR!"
         };
 
     // The actual plugin constructor
@@ -60,7 +60,7 @@ if (typeof jQuery === 'undefined') {
         this.options = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = pluginName;
-        this.metadata = this.$elem.data('plugin-options');
+        this.metadata = this.$elem.data("plugin-options");
         this.init();
     };
 
@@ -87,7 +87,7 @@ if (typeof jQuery === 'undefined') {
         t.interval = window.setInterval(function () {
             t._run.call(t);
         }, 250);
-        t.bar.data('progress-interval', t.interval);
+        t.bar.data("progress-interval", t.interval);
         return true;
     };
 
@@ -119,9 +119,9 @@ if (typeof jQuery === 'undefined') {
 
     Plugin.prototype.removeInterval = function () {
         var t = this,
-            bar = $('.progress-bar', t.element);
-        if (typeof bar.data('progress-interval') !== "undefined") {
-            var interval = bar.data('progress-interval');
+            bar = $(".progress-bar", t.element);
+        if (typeof bar.data("progress-interval") !== "undefined") {
+            var interval = bar.data("progress-interval");
             window.clearInterval(interval);
         }
         return bar;
@@ -131,7 +131,7 @@ if (typeof jQuery === 'undefined') {
         var t = this,
             bar = t.removeInterval.call(t),
             args = arguments;
-        if(args.length !== 0 && typeof args[0] === 'object'){
+        if(args.length !== 0 && typeof args[0] === "object"){
             t.options = $.extend({}, t.options, args[0]);
         }
         bar.removeClass(t.options.baseStyle)
@@ -150,7 +150,7 @@ if (typeof jQuery === 'undefined') {
         var t = this,
             bar = t.removeInterval.call(t),
             args = arguments;
-        if(args.length !== 0 && typeof args[0] === 'object'){
+        if(args.length !== 0 && typeof args[0] === "object"){
             t.options = $.extend({}, t.options, args[0]);
         }
         bar.removeClass(t.options.baseStyle)
@@ -168,27 +168,27 @@ if (typeof jQuery === 'undefined') {
     // preventing against multiple instantiations
     $.fn[pluginName] = function (options) {
         var args = arguments;
-        if (options === undefined || typeof options === 'object') {
+        if (options === undefined || typeof options === "object") {
             // Creates a new plugin instance
             return this.each(function () {
-                if (!$.data(this, 'plugin_' + pluginName)) {
-                    $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+                if (!$.data(this, "plugin_" + pluginName)) {
+                    $.data(this, "plugin_" + pluginName, new Plugin(this, options));
                 }
             });
-        } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
+        } else if (typeof options === "string" && options[0] !== "_" && options !== "init") {
             // Call a public plugin method (not starting with an underscore) and different
-            // from the 'init' one
+            // from the "init" one
             if (Array.prototype.slice.call(args, 1).length === 0 && $.inArray(options, $.fn[pluginName].getters) != -1) {
                 // If the user does not pass any arguments and the method allows to
                 // work as a getter then break the chainability so we can return a value
                 // instead the element reference.
-                var instance = $.data(this[0], 'plugin_' + pluginName);
+                var instance = $.data(this[0], "plugin_" + pluginName);
                 return instance[options].apply(instance, Array.prototype.slice.call(args, 1));
             } else {
                 // Invoke the specified method on each selected element
                 return this.each(function() {
-                    var instance = $.data(this, 'plugin_' + pluginName);
-                    if (instance instanceof Plugin && typeof instance[options] === 'function') {
+                    var instance = $.data(this, "plugin_" + pluginName);
+                    if (instance instanceof Plugin && typeof instance[options] === "function") {
                         instance[options].apply(instance, Array.prototype.slice.call(args, 1));
                     }
                 });
@@ -196,6 +196,6 @@ if (typeof jQuery === 'undefined') {
         }
     };
 
-    $.fn[pluginName].getters = ['complete', 'error'];
+    $.fn[pluginName].getters = ["complete", "error"];
 
 })(jQuery, window, document, undefined);
