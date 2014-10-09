@@ -64,22 +64,22 @@ customcss:
 {% endhighlight %}
 
 ## Default Settings
-{% highlight json %}
-    //total number of seconds
-    timeLimit: 60,
-    //seconds remaining triggering switch to warning color
-    warningThreshold: 5,
-    //invoked once the timer expires
-    onFinish: function () {
-    },
-    //bootstrap progress bar style at the beginning of the timer
-    baseStyle: '',
-    //bootstrap progress bar style in the warning phase
-    warningStyle: 'progress-bar-danger',
-    //bootstrap progress bar style at completion of timer
-    completeStyle: 'progress-bar-success',
-    //show percentage in html div area
-    showPercentage: true,
-    //set the error text when error occurs
-    errorText: 'ERROR!'
+{% highlight html %}
+//total number of seconds
+timeLimit: 60,
+//seconds remaining triggering switch to warning color
+warningThreshold: 5,
+//invoked once the timer expires
+onFinish: function () {
+},
+//bootstrap progress bar style at the beginning of the timer
+baseStyle: '',
+//bootstrap progress bar style in the warning phase
+warningStyle: 'progress-bar-danger',
+//bootstrap progress bar style at completion of timer
+completeStyle: 'progress-bar-success',
+//show percentage in html div area
+showPercentage: true,
+//set the error text when error occurs
+errorText: 'ERROR!'
 {% endhighlight %}
