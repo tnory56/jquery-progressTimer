@@ -12,7 +12,6 @@ install:
   - npm install
 before_script:
   - bower install
-before_script:
   - grunt dist
 script:
   - "bundle exec jekyll build"
