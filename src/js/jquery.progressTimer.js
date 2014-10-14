@@ -48,8 +48,8 @@ if (typeof jQuery === "undefined") {
             warningStyle: "progress-bar-danger",
             //bootstrap progress bar style at completion of timer
             completeStyle: "progress-bar-success",
-            //show percentage in html div area
-            showPercentage: true,
+            //show html on progress bar div area
+            showHtmlSpan: true,
             //set the error text when error occurs
             errorText: "ERROR!",
             //set the success text when succes occurs
@@ -80,7 +80,7 @@ if (typeof jQuery === "undefined") {
             .attr("aria-valuemin", "0")
             .attr("aria-valuemax", t.options.timeLimit);
         t.span.appendTo(t.bar);
-        if (!t.options.showPercentage) {
+        if (!t.options.showHtmlSpan) {
             t.span.addClass("sr-only");
         }
         t.bar.appendTo(t.barContainer);
@@ -108,7 +108,9 @@ if (typeof jQuery === "undefined") {
         if (percentage >= 100) {
             percentage = 100;
         }
-        t.span.html(percentage + "%");
+        if (t.options.showHtmlSpan) {
+            t.span.html(percentage + "%");
+        }
         if (t.limit - elapsed <= 5000) {
             t.bar.removeClass(this.options.baseStyle)
                 .removeClass(this.options.completeStyle)
@@ -141,7 +143,9 @@ if (typeof jQuery === "undefined") {
             .removeClass(t.options.warningStyle)
             .addClass(t.options.completeStyle);
         bar.width("100%");
-        $("span", bar).html(t.options.successText);
+        if (t.options.showHtmlSpan) {
+            $("span", bar).html(t.options.successText);
+        }
         bar.attr("aria-valuenow", 100);
         setTimeout(function () {
             t.options.onFinish.call(bar);
@@ -159,7 +163,9 @@ if (typeof jQuery === "undefined") {
         bar.removeClass(t.options.baseStyle)
             .addClass(t.options.warningStyle);
         bar.width("100%");
-        $("span", bar).html(t.options.errorText);
+        if (t.options.showHtmlSpan) {
+            $("span", bar).html(t.options.errorText);
+        }
         bar.attr("aria-valuenow", 100);
         setTimeout(function () {
             t.options.onFinish.call(bar);
