@@ -16,50 +16,50 @@ customcss:
 {% highlight html %}
 <div class="loading-progress-1"></div>
 <script>
-    var progress1 = $(".loading-progress-1").progressTimer({
-        timeLimit: 10,
+var progress1 = $(".loading-progress-1").progressTimer({
+   timeLimit: 10,
+   onFinish: function () {
+       console.log('completed!');
+   }
+});
+$.ajax({
+   url: "http://localhost/"
+}).error(function () {
+   progress1.progressTimer('error', {
+       errorText: 'ERROR!',
+       onFinish: function () {
+           console.log('1 - There was an error processing your information!');
+       }
+   });
+}).done(function () {
+   progress1.progressTimer('complete');
+});
+</script>
+{% endhighlight %}
+
+<div class="loading-progress-2"></div>
+{% highlight html %}
+<div class="loading-progress-2"></div>
+<script>
+var progress2 = $(".loading-progress-2").progressTimer({
+    timeLimit: 30
+});
+$.ajax({
+    url: "http://www.github.com/"
+}).error(function () {
+    progress2.progressTimer('error', {
+        errorText: 'Cannot connect to github',
         onFinish: function () {
-            alert('completed!');
+            console.log('2 - Cannot connect to github!');
         }
     });
-    $.ajax({
-        url: "http://localhost/"
-    }).error(function () {
-        progress1.progressTimer('error', {
-            errorText: 'ERROR!',
-            onFinish: function () {
-                alert('There was an error processing your information!');
-            }
-        });
-    }).done(function () {
-        progress1.progressTimer('complete');
+}).done(function () {
+    progress2.progressTimer('complete', {
+        onFinish: function () {
+            console.log('With new completion!');
+        }
     });
-</script>
-{% endhighlight %}
-
-<div class="loading-progress-2"></div>
-{% highlight html %}
-<div class="loading-progress-2"></div>
-<script>
-    var progress2 = $(".loading-progress-2").progressTimer({
-        timeLimit: 30
-    });
-    $.ajax({
-        url: "http://www.github.com/"
-    }).error(function () {
-        progress2.progressTimer('error', {
-            errorText: 'Cannot connect to github',
-            onFinish: function () {
-                alert('Cannot connect to github!');
-            }
-        });
-    }).done(function () {
-        progress2.progressTimer('complete', {
-            onFinish: function () {
-                alert('With new completion!');
-            }
-        });
-    });
+});
 </script>
 {% endhighlight %}
 
@@ -68,29 +68,29 @@ customcss:
 {% highlight html %}
 <div class="loading-progress-3"></div>
 <script>
-    var progress3 = $(".loading-progress-3").progressTimer({
-        timeLimit: 30
+var progress3 = $(".loading-progress-3").progressTimer({
+    timeLimit: 30
+});
+$.ajax({
+    url: "https://api.github.com/users/octocat/orgs"
+}).error(function () {
+    progress3.progressTimer('error', {
+        errorText: 'Cannot connect to github api',
+        onFinish: function () {
+            console.log('3 - Cannot connect to github api');
+        }
     });
-    $.ajax({
-        url: "https://api.github.com/users/octocat/orgs"
-    }).error(function () {
-        progress3.progressTimer('error', {
-            errorText: 'Cannot connect to github api',
-            onFinish: function () {
-                console.log('3 - Cannot connect to github api');
-            }
-        });
-    }).done(function () {
-        progress3.progressTimer('complete', {
-            successText: 'Connected successfully to github api',
-            onFinish: function () {
-                var successText = '3 - Connected successfully to github api';
-                console.log(successText);
-                var glyph = $('<span></span>').addClass('glyphicon glyphicon-ok');
-                $(".loading-progress-3").append($('<p></p>').append(glyph).append(' ' + successText));
-            }
-        });
+}).done(function () {
+    progress3.progressTimer('complete', {
+        successText: 'Connected successfully to github api',
+        onFinish: function () {
+            var successText = '3 - Connected successfully to github api';
+            console.log(successText);
+            var glyph = $('<span></span>').addClass('glyphicon glyphicon-ok');
+            $(".loading-progress-3").append($('<p></p>').append(glyph).append(' ' + successText));
+        }
     });
+});
 </script>
 {% endhighlight %}
 

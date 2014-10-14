@@ -1,31 +1,32 @@
 {
-    "name": "jquery-progresstimer-site",
-    "version": "1.0.1",
-    "authors": [
-        "Thomas Norberg <tnorberg@thomasnorberg.com>"
-    ],
-    "description": "The jquery progresstimer is a plugin that extends the ability of the bootstrap progress bar.",
-    "main": [
-        "/dist/jquery.progresstimer.js",
-        "/dist/jquery.progresstimer.min.js"
-    ],
-    "keywords": [
-        "progress",
-        "bootstrap",
-        "timer"
-    ],
-    "license": "MIT",
-    "homepage": "http://thomasnorberg.com",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "devDependencies": {},
-    "dependencies": {
-        "jquery": ">= 1.9.0",
-        "bootstrap": ">=3.2.0"
-    }
+  "name": "jquery-progresstimer-site",
+  "version": "1.0.2",
+  "authors": [
+    "Thomas Norberg <tnorberg@thomasnorberg.com>"
+  ],
+  "description": "The jquery progresstimer is a plugin that extends the ability of the bootstrap progress bar.",
+  "main": [
+    "/dist/jquery.progresstimer.js",
+    "/dist/jquery.progresstimer.min.js"
+  ],
+  "keywords": [
+    "progress",
+    "bootstrap",
+    "timer"
+  ],
+  "license": "MIT",
+  "homepage": "http://thomasnorberg.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "jquery": ">= 1.9.0",
+    "bootstrap": ">=3.2.0",
+    "jquery-progresstimer": "~1.0.3"
+  }
 }

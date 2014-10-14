@@ -1,5 +1,5 @@
 /**!
- * jQuery Progress Timer SITE - v1.0.0 - 10/9/2014
+ * jQuery Progress Timer SITE - v1.0.2 - 10/13/2014
  * http://www.thomasnorberg.com
  * Copyright (c) 2014 Thomas Norberg;
  * Licensed MIT
@@ -68,4 +68,46 @@ $.ajax({
             $(".loading-progress-3").append($('<p></p>').append(glyph).append(' ' + successText));
         }
     });
+});
+
+
+var progress31 = $(".loading-progress-3-1").progressTimer({
+    timeLimit: 10,
+    onFinish: function () {
+        console.log('completed!');
+    },
+    showHtmlSpan: true
+});
+$.ajax({
+    url: "http://localhost/"
+}).error(function () {
+    progress31.progressTimer('error', {
+        errorText: 'ERROR!',
+        onFinish: function () {
+            console.log('There was an error processing your information!');
+        }
+    });
+}).done(function () {
+    progress31.progressTimer('complete');
+});
+
+
+var progress32 = $(".loading-progress-3-2").progressTimer({
+    timeLimit: 30,
+    onFinish: function () {
+        console.log('completed!');
+    },
+    showHtmlSpan: false
+});
+$.ajax({
+    url: "http://localhost/"
+}).error(function () {
+    progress32.progressTimer('error', {
+        errorText: 'ERROR!',
+        onFinish: function () {
+            console.log('There was an error processing your information!');
+        }
+    });
+}).done(function () {
+    progress32.progressTimer('complete');
 });
