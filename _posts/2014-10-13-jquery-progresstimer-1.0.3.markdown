@@ -11,7 +11,7 @@ customcss:
   - /jquery-progressTimer/dist/css/static.min.css
 ---
 
-I realized when I looking at the code on my plugin that the showPercentage option would only work half the time. 
+I realized when I was looking at the code on my plugin that the showPercentage option would only work half the time. 
 
 So I added a new option. 
 
