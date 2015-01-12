@@ -1,5 +1,5 @@
 /**!
- * jQuery Progress Timer - v1.0.3 - 1/12/2015
+ * jQuery Progress Timer - v1.0.4 - 1/12/2015
  * http://www.thomasnorberg.com
  * Copyright (c) 2015 Thomas Norberg;
  * Licensed MIT
