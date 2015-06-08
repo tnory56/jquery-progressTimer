@@ -87,6 +87,7 @@ if (typeof jQuery === "undefined") {
         t.barContainer.appendTo(t.element);
         t.start = new Date();
         t.limit = t.options.timeLimit * 1000;
+        t.warningThreshold = t.options.warningThreshold * 1000;
         t.interval = window.setInterval(function () {
             t._run.call(t);
         }, 250);
@@ -111,7 +112,7 @@ if (typeof jQuery === "undefined") {
         if (t.options.showHtmlSpan) {
             t.span.html(percentage + "%");
         }
-        if (t.limit - elapsed <= 5000) {
+        if (elapsed >= t.warningThreshold) {
             t.bar.removeClass(this.options.baseStyle)
                 .removeClass(this.options.completeStyle)
                 .addClass(this.options.warningStyle);
